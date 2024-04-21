@@ -1,18 +1,6 @@
 import getpass
 import db
 
-class User:
-  def __init__(self, name, password, email, rol):
-    self.name = name
-    self.password = password
-    self.email = email
-    self.rol = rol
-    
-    def validateUser(newUser):
-        adminUser = User("pepe", "pepe", "pepe@gmail.com", "admin")
-        newUser.name = self.name
-    
-
 loginOrNot = input("Quieres crear un nuevo usuario?")
 def login(loginOrNot):
     if(loginOrNot == "yes" or loginOrNot == "si"):
@@ -20,8 +8,8 @@ def login(loginOrNot):
         password = getpass.getpass(prompt="Cual va a ser la contraseña de usuario: ")
         email = input("Cual va a ser el email de usuario: ")
         rol = input("Cual va a ser el rol del usuario: ")
-        newUser = User(username, password, email, rol)
-        print(newUser.name, newUser.email, newUser.rol)
+        newUser = db.newUser(username, password, email, rol)
+        print(newUser)
     else :
         username = input("Enter your username: ")
         password = getpass.getpass(prompt="Enter your password: ")
