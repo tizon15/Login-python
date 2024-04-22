@@ -1,4 +1,3 @@
-import psycopg2
 from pymongo.mongo_client import MongoClient
 def get_database():
     # CONNECTION_STRING = "mongodb+srv://tizon15:<2DwUe9wXB9YECCcQ>@cluster.mongodb.net/myFirstDatabase"
@@ -23,7 +22,9 @@ def get_database():
 #         password="contrasena_db"
 #     )
 #     return conexion
+
 def newUser(user, password, email, rol):
+    """Function printing python version."""
     dbname = get_database()
     collection_name = dbname["users"]
     nuevo_usuario = {
@@ -32,12 +33,11 @@ def newUser(user, password, email, rol):
         "password": password,
         "rol": rol
     }
+    return collection_name.insert_one(nuevo_usuario)
 
-    collection_name.insert_one(nuevo_usuario)
 def validar_usuario(user, password):
     dbname = get_database()
     collection_name = dbname["users"]
 
-    usuario = collection_name.find_one({"correo": user, "contrasena": password})
-
+    usuario = collection_name.find_one({"user": user, "password": password})
     return usuario

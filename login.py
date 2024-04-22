@@ -11,8 +11,16 @@ def login(loginOrNot):
         newUser = db.newUser(username, password, email, rol)
         print(newUser)
     else :
-        username = input("Enter your username: ")
-        password = getpass.getpass(prompt="Enter your password: ")
-        user = db.validar_usuario(username, password)
+        user = validaciones()
+        if user:
+            print(f'Bienvenido {user.username} con rol {user.rol}')
+        else :
+            print('quieres probar de nuevo?')
+            user = validaciones()
         print(user)
+def validaciones():
+    username = input("Enter your username: ")
+    password = getpass.getpass(prompt="Enter your password: ")
+    return db.validar_usuario(username, password)
+
 login(loginOrNot)
