@@ -1,6 +1,6 @@
 import getpass
-from user import User
 import db
+from user import User
 
 def set_user(user, usuario):
   user.set_username(db.get_user(usuario)['username'])
